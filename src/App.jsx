@@ -1,15 +1,13 @@
 import { Canvas } from "@react-three/fiber";
-import "./App.css";
+import { OrbitControls } from "@react-three/drei";
+
 import Experience from "./Experience";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <Canvas>
-        <Experience />
-      </Canvas>
-    </>
+    <Canvas>
+      <Experience />
+      <OrbitControls />
+    </Canvas>
   );
 }
-
-export default App;
