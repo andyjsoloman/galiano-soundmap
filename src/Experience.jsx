@@ -1,23 +1,24 @@
 /* eslint-disable react/no-unknown-property */
 import { useThree } from "@react-three/fiber";
 import { Fog } from "three";
-import Water from "./Water";
+import { Environment, OrbitControls } from "@react-three/drei";
+
+import Shader from "./Shader";
 
 function Experience() {
   const { scene, camera } = useThree();
 
-  // Add fog to the scene
   scene.fog = new Fog(0x0487e2, 7, 25);
 
-  // Set the camera properties
-  camera.fov = 50;
+  camera.fov = 20;
   camera.near = 0.25;
-  camera.far = 30;
-  camera.position.set(4, 10, 4);
-  camera.lookAt(0, 1, 0);
+  camera.far = 300;
+  camera.position.set(30, 90, 250);
 
   return (
     <>
+      <OrbitControls maxPolarAngle={Math.PI * 0.6} target={[0, 70, 0]} />
+      <Environment background files={"./kloppenheim_06_puresky_4k.hdr"} />
       {/* Lighting */}
       <directionalLight
         intensity={1}
@@ -30,7 +31,8 @@ function Experience() {
         groundColor={0x74ccf4}
         intensity={0.5}
       />
-      <Water />
+
+      <Shader />
     </>
   );
 }
