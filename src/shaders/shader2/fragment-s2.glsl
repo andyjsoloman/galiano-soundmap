@@ -4,6 +4,7 @@
 precision highp float;
 
 uniform float u_time;        // Time uniform
+
 uniform vec2 u_resolution;  // Canvas resolution
 uniform vec2 u_mouse;       // Mouse position
 

@@ -1,24 +1,36 @@
 /* eslint-disable react/no-unknown-property */
 import { useThree } from "@react-three/fiber";
-import { Fog } from "three";
+import { useEffect } from "react";
+import * as THREE from "three";
 import { Environment, OrbitControls } from "@react-three/drei";
 
 import Shader from "./Shader";
+import Ocean from "./Ocean";
 
 function Experience() {
-  const { scene, camera } = useThree();
+  const { scene, camera, size } = useThree();
 
-  scene.fog = new Fog(0x0487e2, 7, 25);
+  useEffect(() => {
+    scene.fog = new THREE.FogExp2(0x0487e2, 0.0002);
 
-  camera.fov = 20;
-  camera.near = 0.25;
-  camera.far = 300;
-  camera.position.set(30, 90, 250);
+    camera.near = 1;
+    camera.far = 5000;
+    // camera.fov = 25;
+    camera.position.set(1000, 500, 0);
+
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+  }, [scene, camera, size]);
 
   return (
     <>
       <OrbitControls maxPolarAngle={Math.PI * 0.6} target={[0, 70, 0]} />
-      <Environment background files={"./kloppenheim_06_puresky_4k.hdr"} />
+      <Environment
+        background
+        files={"./kloppenheim_06_puresky_4k.hdr"}
+        rotation={[0, -Math.PI, 0]}
+      />
+
       {/* Lighting */}
       <directionalLight
         intensity={1}
@@ -31,8 +43,12 @@ function Experience() {
         groundColor={0x74ccf4}
         intensity={0.5}
       />
-
-      <Shader />
+      <Ocean />
+      {/* <Shader /> */}
+      <mesh scale={200} position={[5, -20, 5]}>
+        <boxGeometry />
+        <meshStandardMaterial />
+      </mesh>
     </>
   );
 }

@@ -29,7 +29,7 @@ export default function Shader() {
 
   return (
     <mesh ref={mesh} position={[0, -20, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[10000, 10000, 128, 128]} />
+      <planeGeometry args={[15000, 3000, 512, 512]} />
       <shaderMaterial
         fragmentShader={fragmentShader}
         vertexShader={vertexShader}

@@ -10,7 +10,7 @@ export default function Water() {
 
   return (
     <mesh
-      geometry={new THREE.PlaneGeometry(10000, 10000)}
+      geometry={new THREE.PlaneGeometry(100, 100)}
       material={waterMaterial}
       rotation={[-Math.PI / 2, 0, 0]} // Rotate to make it flat
       position={[0, -20, 0]}
