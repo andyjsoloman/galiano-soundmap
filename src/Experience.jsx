@@ -6,6 +6,7 @@ import { Environment, OrbitControls } from "@react-three/drei";
 
 import Shader from "./Shader";
 import Ocean from "./Ocean";
+import Map from "./Map";
 
 function Experience() {
   const { scene, camera, size } = useThree();
@@ -24,7 +25,11 @@ function Experience() {
 
   return (
     <>
-      <OrbitControls maxPolarAngle={Math.PI * 0.6} target={[0, 70, 0]} />
+      <OrbitControls
+        maxPolarAngle={Math.PI * 0.6}
+        target={[0, 70, 0]}
+        enablePan={true}
+      />
       <Environment
         background
         files={"./kloppenheim_06_puresky_4k.hdr"}
@@ -45,10 +50,11 @@ function Experience() {
       />
       <Ocean />
       {/* <Shader /> */}
-      <mesh scale={200} position={[5, -20, 5]}>
+      {/* <mesh scale={200} position={[5, -20, 5]}>
         <boxGeometry />
         <meshStandardMaterial />
-      </mesh>
+      </mesh> */}
+      <Map />
     </>
   );
 }
